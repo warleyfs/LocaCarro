@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaCarro.Infraestructure.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaCarro.Infraestructure.CrossCutting.IoC", "LocaCarro.Infraestructure.CrossCutting.IoC\LocaCarro.Infraestructure.CrossCutting.IoC.csproj", "{1A45CDC1-79F1-4DCE-901E-021F05C4CE45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaCarro.Presentation.Web", "LocaCarro.Presentation.Web\LocaCarro.Presentation.Web.csproj", "{78B5D6F2-464F-472F-A21F-5DD319DBBF4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{1A45CDC1-79F1-4DCE-901E-021F05C4CE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A45CDC1-79F1-4DCE-901E-021F05C4CE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A45CDC1-79F1-4DCE-901E-021F05C4CE45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B5D6F2-464F-472F-A21F-5DD319DBBF4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B5D6F2-464F-472F-A21F-5DD319DBBF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B5D6F2-464F-472F-A21F-5DD319DBBF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B5D6F2-464F-472F-A21F-5DD319DBBF4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,5 +53,6 @@ Global
 		{C7D9C3AA-24D7-4170-90B4-5FCAE6D269EC} = {D9B36D3F-1EE0-4F12-9B36-DBA0F7977C41}
 		{45363397-84D9-4351-B78F-8A899A550318} = {BA95D75B-752A-4640-8C1A-3DD1082D3B80}
 		{1A45CDC1-79F1-4DCE-901E-021F05C4CE45} = {843BAFD5-EE0A-4ACE-97AA-AA9B94489196}
+		{78B5D6F2-464F-472F-A21F-5DD319DBBF4E} = {D6CFDEC9-9705-4CB8-ACAC-CC4554690B06}
 	EndGlobalSection
 EndGlobal
