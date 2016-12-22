@@ -45,7 +45,7 @@ namespace LocaCarro.Presentation.Controllers
             }
 
             model.Retorno = new List<IndexViewModel.Return>();
-            
+
             var reader = new StreamReader(model.Entrada.InputStream);
 
             while (!reader.EndOfStream)
@@ -64,42 +64,47 @@ namespace LocaCarro.Presentation.Controllers
                 var loja = _lojaRepository.GetAll()
                     .Where(x => x.Tipo.Id == tipo.Id && ocupacao <= x.Tipo.Capacidade)
                     .FirstOrDefault();
-                
-                var datas = valores[2].Split(',');
 
-                var dataInicial = DateTime.Parse(datas[0].Substring(0, 9));
-                var dataFinal = DateTime.Parse(datas[1].Substring(0, 9));
-                var totalDias = (dataFinal - dataInicial).TotalDays;
-
-                var diaAtual = dataInicial;
-
-                var precoFinal = 0.00;
-
-                for (int i = 1; i <= totalDias; i++)
+                if (tipo != null && loja != null)
                 {
-                    var diaUtil = false;
+                    var datas = valores[2].Split(',');
 
-                    if (diaAtual.DayOfWeek != DayOfWeek.Saturday && diaAtual.DayOfWeek != DayOfWeek.Sunday)
+                    var dataInicial = DateTime.Parse(datas[0].Substring(0, 9));
+                    var dataFinal = DateTime.Parse(datas[1].Substring(0, 9));
+                    var totalDias = (dataFinal - dataInicial).TotalDays;
+
+                    var diaAtual = dataInicial;
+
+                    var precoFinal = 0.00;
+
+                    for (int i = 1; i <= totalDias; i++)
                     {
-                        diaUtil = true;
+                        var diaUtil = false;
+
+                        if (diaAtual.DayOfWeek != DayOfWeek.Saturday && diaAtual.DayOfWeek != DayOfWeek.Sunday)
+                        {
+                            diaUtil = true;
+                        }
+
+                        var tarifaDoDia = _tarifaRepository.GetAll()
+                            .Where(x => x.DiaUtil == diaUtil
+                                     && x.Fidelizacao == model.Fidelidade
+                                     && x.Loja.Id == loja.Id)
+                            .OrderBy(x => x.Valor)
+                            .FirstOrDefault();
+
+                        if (tarifaDoDia != null && tarifaDoDia.Valor > 0)
+                        {
+                            precoFinal += tarifaDoDia.Valor;
+                        }
+                        
+                        diaAtual.AddDays(i);
                     }
 
-                    var tarifaDoDia = _tarifaRepository.GetAll()
-                        .Where(x => x.DiaUtil == diaUtil
-                                 && x.Fidelizacao == model.Fidelidade
-                                 && x.Loja.Id == loja.Id)
-                        .OrderBy(x => x.Valor)
-                        .FirstOrDefault();
-
-                    precoFinal += tarifaDoDia.Valor;
-
-                    diaAtual.AddDays(i);
+                    model.Retorno.Add(new IndexViewModel.Return { Carro = tipo.Carros.FirstOrDefault().Nome, Loja = loja.Nome });
                 }
-
-                model.Retorno.Add(new IndexViewModel.Return { Carro = tipo.Carros.FirstOrDefault().Nome, Loja = loja.Nome });
-
             }
-            
+
             return View(model);
         }
     }

@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace LocaCarro.Infraestructure.Data.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<LocaCarroDBContext>
+    public sealed class Configuration : DbMigrationsConfiguration<LocaCarroDBContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(LocaCarroDBContext context)
