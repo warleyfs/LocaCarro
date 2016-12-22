@@ -1,0 +1,50 @@
+﻿@model LocaCarro.Presentation.Models.TipoCarro.ListViewModel
+
+@{
+    ViewBag.Title = "Tipos de Carros";
+}
+
+<h2>Listagem de Tipos de Carros</h2>
+
+<p>
+    @Html.ActionLink("Novo Tipo de Carro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.FirstOrDefault().Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.FirstOrDefault().Capacidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.FirstOrDefault().CriadoEm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipos.FirstOrDefault().AlteradoEm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Tipos) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capacidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CriadoEm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlteradoEm)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

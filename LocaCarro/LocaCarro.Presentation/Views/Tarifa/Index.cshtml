@@ -1,0 +1,62 @@
+﻿@model LocaCarro.Presentation.Models.Tarifa.ListViewModel
+
+@{
+    ViewBag.Title = "Tarifas";
+}
+
+<h2>Listagem de Tarifas</h2>
+
+<p>
+    @Html.ActionLink("Nova tarifa", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().Loja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().DiaUtil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().Fidelizacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().CriadoEm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifas.FirstOrDefault().AlteradoEm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Tarifas) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaUtil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fidelizacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CriadoEm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlteradoEm)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

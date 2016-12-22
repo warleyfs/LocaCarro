@@ -1,0 +1,24 @@
+﻿@model LocaCarro.Presentation.Models.TipoCarro.DeleteViewModel
+
+@{
+    ViewBag.Title = "Excluir Tipo de Carro";
+}
+
+<h2>Excluir Tipo de Carro</h2>
+
+<h3>Tem certeza que deseja excluir este tipo de carro?</h3>
+<div>
+    <h4>@Model.Descricao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

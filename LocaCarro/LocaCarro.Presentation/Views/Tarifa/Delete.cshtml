@@ -1,0 +1,24 @@
+﻿@model LocaCarro.Presentation.Models.Tarifa.DeleteViewModel
+
+@{
+    ViewBag.Title = "Excluir tarifa";
+}
+
+<h2>Excluir tarifa</h2>
+
+<h3>Tem certeza que deseja excluir esta tarifa?</h3>
+<div>
+    <h4>@string.Format("{0} | {1}", Model.Loja, Model.Valor)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

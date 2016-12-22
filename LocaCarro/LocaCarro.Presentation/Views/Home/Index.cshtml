@@ -1,0 +1,45 @@
+﻿@model LocaCarro.Presentation.Models.Home.IndexViewModel
+@{
+    ViewBag.Title = "Página Principal";
+}
+
+<div class="jumbotron">
+    <p class="lead">Para fazer uma consulta selecione seu arquivo de entrada e clique em enviar.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="/Home/Index" id="get-best-price" method="post" role="form" class="form margin-clear" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(model => model.Fidelidade)
+            @Html.EditorFor(model => model.Fidelidade)
+            <input type="file" id="Entrada" name="Entrada" style="width: 100%; margin-bottom: 20px;" accept=".csv,.txt" required="required" />
+            @Html.ValidationMessageFor(model => model.Entrada, "", new { @class = "text-danger" })
+            <p><input type="submit" id="EnviarForm" class="btn btn-primary btn-lg" value="Enviar" /></p>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Resultado da Consulta:</h2>
+        @if (Model.Retorno != null && Model.Retorno.Count() > 0)
+        {
+            foreach (var item in Model.Retorno)
+            {
+                <p>@string.Format("{0} : {1}", item.Carro, item.Loja)</p>
+            }
+        }
+        else
+        {
+            <p>
+                Nenhum valor retornado.
+            </p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/custom.js")
+}

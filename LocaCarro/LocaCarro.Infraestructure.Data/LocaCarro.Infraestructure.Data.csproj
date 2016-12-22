@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +47,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\IDatabaseContext.cs" />
+    <Compile Include="Context\ILocaCarroDBContext.cs" />
+    <Compile Include="Context\LocaCarroDBContext.cs" />
+    <Compile Include="EntityConfig\LojaConfig.cs" />
+    <Compile Include="EntityConfig\TarifaConfig.cs" />
+    <Compile Include="EntityConfig\TipoCarroConfig.cs" />
+    <Compile Include="EntityConfig\ClienteConfig.cs" />
+    <Compile Include="EntityConfig\CarroConfig.cs" />
+    <Compile Include="Migrations\201612212352457_Initial.cs" />
+    <Compile Include="Migrations\201612212352457_Initial.Designer.cs">
+      <DependentUpon>201612212352457_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612220415163_RemoveSoftDelete.cs" />
+    <Compile Include="Migrations\201612220415163_RemoveSoftDelete.Designer.cs">
+      <DependentUpon>201612220415163_RemoveSoftDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612220513043_AlterTarifa.cs" />
+    <Compile Include="Migrations\201612220513043_AlterTarifa.Designer.cs">
+      <DependentUpon>201612220513043_AlterTarifa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\TarifaRepository.cs" />
+    <Compile Include="Repositories\LojaRepository.cs" />
+    <Compile Include="Repositories\ClienteRepository.cs" />
+    <Compile Include="Repositories\TipoCarroRepository.cs" />
+    <Compile Include="Repositories\CarroRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocaCarro.Domain\LocaCarro.Domain.csproj">
+      <Project>{c7d9c3aa-24d7-4170-90b4-5fcae6d269ec}</Project>
+      <Name>LocaCarro.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612212352457_Initial.resx">
+      <DependentUpon>201612212352457_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612220415163_RemoveSoftDelete.resx">
+      <DependentUpon>201612220415163_RemoveSoftDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612220513043_AlterTarifa.resx">
+      <DependentUpon>201612220513043_AlterTarifa.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
